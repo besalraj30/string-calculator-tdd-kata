@@ -14,6 +14,10 @@ export const add = (input) => {
   }
 
   const nums = input.split(delimiter);
+  const negatives = nums.filter(num => num < 0);
+  if (negatives.length) {
+    throw new Error(`Negatives not allowed: ${negatives.join(", ")}`);
+  }
   return nums.reduce((sum, num) => sum + parseInt(num), 0);
 };
 
