@@ -12,3 +12,7 @@ test('returns 0 for an empty string', () => {
   const result = add(""); // Assume `add` function is exported from App
   expect(result).toBe(0);
 });
+
+test('returns number when input has one number', () => {
+  expect(add("1")).toBe(1);
+});
