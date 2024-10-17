@@ -5,7 +5,15 @@ import './App.css';
 export const add = (input) => {
   // TODO: Implement string calculator logic here
   if (input === "") return 0;
-  const nums = input.split(/[\n,]/); 
+
+  let delimiter = /[\n,]/;
+  if (input.startsWith("//")) {
+    const delimiterEnd = input.indexOf('\n');
+    delimiter = new RegExp(input.substring(2, delimiterEnd));
+    input = input.substring(delimiterEnd + 1);
+  }
+
+  const nums = input.split(delimiter);
   return nums.reduce((sum, num) => sum + parseInt(num), 0);
 };
 
