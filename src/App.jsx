@@ -5,7 +5,7 @@ import './App.css';
 export const add = (input) => {
   // TODO: Implement string calculator logic here
   if (input === "") return 0;
-  return input; // For now, return the input as the result
+  return parseInt(input); // For now, return the input as the result
 };
 
 function App() {
