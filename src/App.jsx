@@ -8,7 +8,16 @@ export const add = (input) => {
   let delimiter = /[\n,]/;
   if (input.startsWith("//")) {
     const delimiterEnd = input.indexOf('\n');
-    delimiter = new RegExp(input.substring(2, delimiterEnd));
+    const customDelimiterSection = input.substring(2, delimiterEnd);
+
+    if (customDelimiterSection.includes('[')) {
+      const delimiters = customDelimiterSection.match(/\[(.*?)\]/g).map(del => del.slice(1, -1));
+      const regexString = delimiters.map(del => del.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+      delimiter = new RegExp(regexString);
+    } else {
+      delimiter = new RegExp(customDelimiterSection.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    }
+
     input = input.substring(delimiterEnd + 1);
   }
 

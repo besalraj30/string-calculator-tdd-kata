@@ -38,3 +38,8 @@ test('ignores numbers greater than 1000', () => {
   expect(add("1000,2000")).toBe(1000);
   expect(add("1,2,1001,1002")).toBe(3);
 });
+
+test('supports multiple custom delimiters', () => {
+  expect(add("//[*][%]\n1*2%3")).toBe(6); // 1 + 2 + 3
+  expect(add("//[;][&]\n4;5&6")).toBe(15); // 4 + 5 + 6
+});
