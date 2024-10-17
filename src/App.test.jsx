@@ -9,6 +9,6 @@ test('renders the String Calculator heading', () => {
 });
 
 test('returns 0 for an empty string', () => {
-  const result = handleCalculate(""); // Assume `add` function is exported from App
+  const result = add(""); // Assume `add` function is exported from App
   expect(result).toBe(0);
 });
