@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import './App.css';
 
-export const handleCalculate = (input) => {
+export const add = (input) => {
   // TODO: Implement string calculator logic here
   return input; // For now, return the input as the result
 };
