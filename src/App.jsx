@@ -3,7 +3,6 @@ import { useState } from 'react';
 import './App.css';
 
 export const add = (input) => {
-  // TODO: Implement string calculator logic here
   if (input === "") return 0;
 
   let delimiter = /[\n,]/;
@@ -18,7 +17,11 @@ export const add = (input) => {
   if (negatives.length) {
     throw new Error(`Negatives not allowed: ${negatives.join(", ")}`);
   }
-  return nums.reduce((sum, num) => sum + parseInt(num), 0);
+  return nums.reduce((sum, num) => {
+    const number = parseInt(num);
+    return sum + (number > 1000 ? 0 : number);
+  }, 0);
+
 };
 
 function App() {
