@@ -7,3 +7,8 @@ test('renders the String Calculator heading', () => {
   const headingElement = screen.getByText(/String Calculator/i);
   expect(headingElement).toBeInTheDocument();
 });
+
+test('returns 0 for an empty string', () => {
+  const result = handleCalculate(""); // Assume `add` function is exported from App
+  expect(result).toBe(0);
+});
