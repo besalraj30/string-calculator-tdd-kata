@@ -5,7 +5,7 @@ import './App.css';
 export const add = (input) => {
   // TODO: Implement string calculator logic here
   if (input === "") return 0;
-  const nums = input.split(',');
+  const nums = input.split(/[\n,]/); 
   return nums.reduce((sum, num) => sum + parseInt(num), 0);
 };
 
