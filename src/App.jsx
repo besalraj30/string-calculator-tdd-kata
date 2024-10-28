@@ -2,9 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import './App.css';
 
-export const add = (input) => {
-  if (input === "") return 0;
-
+const delimiterCheck = (input) => {
   let delimiter = /[\n,]/;
   if (input.startsWith("//")) {
     const delimiterEnd = input.indexOf('\n');
@@ -20,17 +18,25 @@ export const add = (input) => {
 
     input = input.substring(delimiterEnd + 1);
   }
+  return { delimiter, input };
+};
 
-  const nums = input.split(delimiter);
+const processNumbers = (input, delimiter) => {
+  const nums = input.split(delimiter).map(num => parseInt(num));
   const negatives = nums.filter(num => num < 0);
+
   if (negatives.length) {
     throw new Error(`Negatives not allowed: ${negatives.join(", ")}`);
   }
-  return nums.reduce((sum, num) => {
-    const number = parseInt(num);
-    return sum + (number > 1000 ? 0 : number);
-  }, 0);
 
+  return nums.reduce((sum, num) => (num > 1000 ? sum : sum + num), 0);
+};
+
+export const add = (input) => {
+  if (input === "") return 0;
+
+  const { delimiter, input: processedInput } = delimiterCheck(input);
+  return processNumbers(processedInput, delimiter);
 };
 
 function App() {
